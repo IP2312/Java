@@ -1,6 +1,6 @@
 public class PseudoCode {
     public static void main(String[] args) {
-        int n = 7;
+        int n = 8;
         boolean primzahl = true;
 
         for (int k = 2; k < n && primzahl; k++){
