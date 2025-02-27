@@ -9,11 +9,11 @@ public class GaudiMitStatistikV1 {
         int sentenceSize = sentence.length();
         for (int i = 0; i < sentenceSize; i++) {
             int z = sentence.charAt(i);
-            if (z >= 65 && z <= 90) {
+            if (z >= 'A' && z <= 'Z') {
                 upper++;
-            } else if (z >= 97 && z <= 122) {
+            } else if (z >= 'a' && z <= 'z') {
                 lower++;
-            } else if (z >= 48 && z <= 57) {
+            } else if (z >= '1' && z <= '9') {
                 number++;
             }
             else{
