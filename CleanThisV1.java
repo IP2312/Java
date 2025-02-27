@@ -6,11 +6,11 @@ public class CleanThisV1 {
         boolean vip = true;
         boolean access = true;
 
-        if (age > 18) {
+        if (age >= 18) {
             System.out.println("Grünes Band");
-        } else if (age >= 16 && age <= 18) {
+        } else if (age >= 16) {
             System.out.println("Gelbes Band");
-        } else if (age > 4 && withAdult) {
+        } else if (age >= 4 && withAdult) {
             System.out.println("Rotes Band");
         } else {
             access = false;
