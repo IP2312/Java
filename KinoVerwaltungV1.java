@@ -34,16 +34,20 @@ public class KinoVerwaltungV1 {
         //ask which movie until available movie selected or quit
         boolean available = true;
         int movie;
+        int seat;
         do {
             System.out.println("Welchen Film möchtest du sehen?");
             movie = sc.nextInt();
-
-        }while (!available || movie >= movies.length);
+            if (movie <= movies.length){
+                seat = Integer.parseInt(movies[movie - 1][3]);
+                if (seat == 0){
+                    available = false;
+                }else {
+                    available = true;
+                }
+            }
+        }while (!available);
         // if  available movie selected ask for number of tickets
-        int seat = Integer.parseInt(movies[movie - 1][3]);
-        if (seat <= 0){
-            available = false;
-        }
 
         // if has enough money and seats are available subtract money and available seats from movie
 
