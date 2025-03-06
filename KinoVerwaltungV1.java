@@ -32,7 +32,7 @@ public class KinoVerwaltungV1 {
         System.out.println("------------------------------------------------");
 
         //ask which movie until available movie selected or quit
-        boolean available = true;
+        boolean available = false;
         int movie;
         int seat;
         do {
