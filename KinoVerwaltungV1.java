@@ -4,7 +4,7 @@ public class KinoVerwaltungV1 {
     public static void main(String[] args) {
         int movie = 0;
         int seats;
-        double money;
+        double money = 0;
         String[][] movies = {
                 {"Titel", "Uhrzeit", "Saal", "Restplätze"},
                 {"Heldin", "20:15", "2", "10"},
@@ -15,12 +15,14 @@ public class KinoVerwaltungV1 {
 
         Scanner sc = new Scanner(System.in);
         //ask how much money
-        boolean valid;
+        boolean valid = false;
         do{
-            System.out.println("Wie viel Geld hast du bei dir?");
-            money = sc.nextDouble();
-            if(...){
-                ...;
+            try{
+                System.out.println("Wie viel Geld hast du bei dir?");
+                money = Double.parseDouble(sc.next());
+                valid = true;
+            }catch (NumberFormatException ignore){
+                System.out.println("Invalid input");
             }
         }while (money <= 0 || !valid);
 
