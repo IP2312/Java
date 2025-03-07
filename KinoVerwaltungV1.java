@@ -15,10 +15,14 @@ public class KinoVerwaltungV1 {
 
         Scanner sc = new Scanner(System.in);
         //ask how much money
+        boolean valid;
         do{
             System.out.println("Wie viel Geld hast du bei dir?");
             money = sc.nextDouble();
-        }while (money <= 0 || );
+            if(...){
+                ...;
+            }
+        }while (money <= 0 || !valid);
 
         //display monitor
         do{
