@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class KinoVerwaltungV1 {
     public static void main(String[] args) {
+        int movie = 0;
+        int seats;
         String[][] movies = {
                 {"Titel", "Uhrzeit", "Saal", "Restplätze"},
                 {"Heldin", "20:15", "2", "10"},
@@ -9,18 +11,18 @@ public class KinoVerwaltungV1 {
                 {"Anora", "20:15", "2", "0"},
                 {"Bagman", "20:15", "2", "4"},
         };
-        int movie = 1;
-        int seats;
+
         Scanner sc = new Scanner(System.in);
         //ask how much money
         System.out.println("Wie viel Geld hast du bei dir?");
-        int money = sc.nextInt();
+        double money = sc.nextDouble();
         //display monitor
-        while (movie != 0) {
-            String formatter = "%d. %-15s %-10s %-8s %6s\n";
-            System.out.printf(formatter, 0, movies[0][0], movies[0][1], movies[0][2], movies[0][3]);
+        do{
+            String formatter_title = "%-2s %-14s %-10s %-8s %6s\n";
+            System.out.printf(formatter_title, "", movies[0][0], movies[0][1], movies[0][2], movies[0][3]);
             System.out.println("------------------------------------------------");
             //print monitor displaying movie title, time, movie theatre, availability
+            String formatter_content = "%d. %-15s %-10s %-8s %6s\n";
             for (int i = 1; i < movies.length; i++) {
                 int seat = Integer.parseInt(movies[i][3]);
                 String availability;
@@ -29,7 +31,7 @@ public class KinoVerwaltungV1 {
                 } else {
                     availability = "ausgebucht";
                 }
-                System.out.printf(formatter, i, movies[i][0], movies[i][1], movies[i][2], availability);
+                System.out.printf(formatter_content, i, movies[i][0], movies[i][1], movies[i][2], availability);
             }
             System.out.println("------------------------------------------------");
 
@@ -45,16 +47,14 @@ public class KinoVerwaltungV1 {
                     int gekaufteTickets = sc.nextInt();
                     int preis = gekaufteTickets * 15;
                     if (preis <= money) {
-                        int budget = money - preis;
-                        System.out.println(String.format("Du hast %d Tickets  um %d€ gekauft und hast jetzt noch %d€", gekaufteTickets, preis, budget));
+                        double budget = money - preis;
+                        System.out.println(String.format("Du hast %d Tickets  um %d€ gekauft und hast jetzt noch %.2f€", gekaufteTickets, preis, budget));
                         // if has enough money and seats are available subtract money and available seats from movie
                         int remainingSeats = seats - gekaufteTickets;
                         movies[movie][3] = String.valueOf(remainingSeats);
                     }
                 }
             }
-
-        }
-
+        }while (movie != 0);
     }
 }
