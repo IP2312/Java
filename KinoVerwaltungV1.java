@@ -4,6 +4,7 @@ public class KinoVerwaltungV1 {
     public static void main(String[] args) {
         int movie = 0;
         int seats;
+        double money;
         String[][] movies = {
                 {"Titel", "Uhrzeit", "Saal", "Restplätze"},
                 {"Heldin", "20:15", "2", "10"},
@@ -14,8 +15,11 @@ public class KinoVerwaltungV1 {
 
         Scanner sc = new Scanner(System.in);
         //ask how much money
-        System.out.println("Wie viel Geld hast du bei dir?");
-        double money = sc.nextDouble();
+        do{
+            System.out.println("Wie viel Geld hast du bei dir?");
+            money = sc.nextDouble();
+        }while (money <= 0 || );
+
         //display monitor
         do{
             String formatter_title = "%-2s %-14s %-10s %-8s %6s\n";
