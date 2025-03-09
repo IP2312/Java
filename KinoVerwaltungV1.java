@@ -3,7 +3,7 @@ import  java.util.ArrayList;
 
 public class KinoVerwaltungV1 {
     public static void main(String[] args) {
-        int movie = 0;
+        int movie;
         int seats;
         double money = 0;
         ArrayList moviesWatched = new ArrayList();
