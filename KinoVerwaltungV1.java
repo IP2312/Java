@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import  java.util.ArrayList;
+import java.util.ArrayList;
 
 public class KinoVerwaltungV1 {
     public static void main(String[] args) {
@@ -61,27 +61,29 @@ public class KinoVerwaltungV1 {
                     if (seats != 0) {
                         // if  available movie selected ask for number of tickets
                         System.out.println(String.format("Es sind noch %d tickets zu je 15€ verfügbar. Wie viele möchtest du kaufen?", seats));
-                        int gekaufteTickets = sc.nextInt();
-                        if (gekaufteTickets <= 0){
-                            System.out.println("Anzahl der Tickets darf nicht 0 oder kleiner sein.");
-                        } else if (gekaufteTickets > seats) {
-                            System.out.println("Es sind nicht genügend Plätze vorhanden");
-                        } else {
-                            int preis = gekaufteTickets * 15;
-                            if (preis <= money) {
-                                money -= preis;
-                                System.out.println(String.format("Du hast %d Tickets  um %d€ gekauft und hast jetzt noch %.2f€", gekaufteTickets, preis, money));
-                                // if has enough money and seats are available subtract money and available seats from movie
-                                int remainingSeats = seats - gekaufteTickets;
-                                movies[movie][3] = String.valueOf(remainingSeats);
-                                moviesWatched.add(movie);
+                        try {
+                            int gekaufteTickets = Integer.parseInt(sc.next());
+                            if (gekaufteTickets <= 0) {
+                                System.out.println("Anzahl der Tickets darf nicht 0 oder kleiner sein.");
+                            } else if (gekaufteTickets > seats) {
+                                System.out.println("Es sind nicht genügend Plätze vorhanden");
+                            } else {
+                                int preis = gekaufteTickets * 15;
+                                if (preis <= money) {
+                                    money -= preis;
+                                    System.out.println(String.format("Du hast %d Tickets  um %d€ gekauft und hast jetzt noch %.2f€", gekaufteTickets, preis, money));
+                                    // if has enough money and seats are available subtract money and available seats from movie
+                                    int remainingSeats = seats - gekaufteTickets;
+                                    movies[movie][3] = String.valueOf(remainingSeats);
+                                    moviesWatched.add(movie);
+                                } else {
+                                    System.out.println("Du hast nicht genug Geld.");
+                                }
                             }
-                            else {
-                                System.out.println("Du hast nicht genug Geld.");
-                            }
+                        }catch (NumberFormatException ignore) {
+                            System.out.println("Ungültiger Input");
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("Film ausgebucht");
                     }
                 } else {
@@ -93,6 +95,6 @@ public class KinoVerwaltungV1 {
             }
 
         } while (movie != 0);
-        System.out.println("Filme: " + moviesWatched );
+        System.out.println("Filme: " + moviesWatched);
     }
 }
