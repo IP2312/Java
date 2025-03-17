@@ -48,7 +48,7 @@ public class KinoVerwaltungV1 {
 
             System.out.println("Welchen Film möchtest du sehen?");
             movie = sc.nextInt();
-            if (movie > 0 && movie < movies.length) {
+            if (movie > 0 && movie <= movies.length) {
                 seats = Integer.parseInt(movies[movie - 1][3]);
                 if (seats > 0) {
                     // if  available movie selected ask for number of tickets
