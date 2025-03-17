@@ -1,6 +1,7 @@
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class KinoverwaltungV2_2 {
     public static void main(String[] args) {
@@ -97,19 +98,51 @@ public class KinoverwaltungV2_2 {
                 case 2://Film ansehen
                     //gekaufte Filme anzeigen
                     boughtMovies.sort(Comparator.naturalOrder());
-                    System.out.println("Welchen Film möchtest du sehen? (0 für abbrechen)");
-                    for (int i = 0; i < boughtMovies.size(); i++) {
-                        System.out.println(i + 1 + "." + movies[boughtMovies.get(i) - 1][0]);
-                    }
-                    int chosenMovie = sc.nextInt();
-                    if (chosenMovie > 0 && chosenMovie <= boughtMovies.size()) {
-                        System.out.println(String.format("Du schaust den Film %s an. Viel Spaß!", movies[boughtMovies.get(chosenMovie-1)][0]));
-                        boughtMovies.remove(chosenMovie - 1);
-                    }
+                    int chosenMovie;
+                    do {
+                        System.out.println("Welchen Film möchtest du sehen? (0 für abbrechen)");
+                        for (int i = 0; i < boughtMovies.size(); i++) {
+                            System.out.println(i + 1 + "." + movies[boughtMovies.get(i) - 1][0]);
+                        }
+                        chosenMovie = sc.nextInt();
+                        if (chosenMovie > 0 && chosenMovie <= boughtMovies.size()) {
+                            System.out.println(String.format("Du schaust den Film %s an. Viel Spaß!", movies[boughtMovies.get(chosenMovie - 1)][0]));
+                            boughtMovies.remove(chosenMovie - 1);
+                        }
+                    }while (chosenMovie != 0);
+                    break;
 
                 case 3: //Gewinnspiel
+                    if (money >= 5){
+                        System.out.println("Du machst beim Gewinnspiel mit!");
+                        Random r = new Random();
+                        int number = r.nextInt(990) + 10;
+                        System.out.println("Deine Glückszahl ist: " + number);
 
+                        int sum = 0;
+                        do {
+                           int lastdigit = number % 10;
+                           sum += lastdigit;
+                           number /= 10;
+                        }while (number > 0);
 
+                        if (sum > 16){
+                            System.out.println("Die Ziffernsumme deiner Glückszahl ist gößer 16. Du gewinnst 20€");
+                            money += 20;
+                        }
+                        else {
+                            System.out.println("Die Ziffernsumme deiner Glückszahl ist kleiner 16. Leider nicht gewonnen.");
+                            money -= 5;
+                        }
+
+                    }
+                    else{
+                        System.out.println("Du hast zu wenig Geld für eine Teilnahme am Gewinnspiel.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Du verlässt das Kino. Auf wiedersehne!");
+                    break;
 
 
             }
