@@ -80,7 +80,7 @@ public class KinoVerwaltungV1 {
                 System.out.println("Wähle einen der angezeigten Filme.");
             }
 
-    } while(movie > 0);
+    } while(movie != 0);
         System.out.println("Filme: " + moviesWatched);
 }
 }
