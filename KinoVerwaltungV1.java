@@ -6,7 +6,7 @@ public class KinoVerwaltungV1 {
         int movie;
         int seats;
         double money = 0;
-        ArrayList moviesWatched = new ArrayList();
+        ArrayList<Integer> moviesWatched = new ArrayList<Integer>();
         String[][] movies = {
                 {"Heldin", "20:15", "2", "10"},
                 {"A Real Pain", "20:15", "2", "12"},
@@ -20,7 +20,7 @@ public class KinoVerwaltungV1 {
             System.out.println("Wie viel Geld hast du bei dir?");
             money = sc.nextDouble();
             if (money <= 15) {
-                System.out.println("Betrag muss mehr als Null sein");
+                System.out.println("Betrag muss mehr als 15€ sein");
             }
         } while (money <= 15);
 
@@ -48,31 +48,31 @@ public class KinoVerwaltungV1 {
 
             System.out.println("Welchen Film möchtest du sehen?");
             movie = sc.nextInt();
-            if (movie > 0 && movie < movies.length) {
+            if (movie > 0 && movie <= movies.length) {
                 seats = Integer.parseInt(movies[movie - 1][3]);
                 if (seats > 0) {
                     // if  available movie selected ask for number of tickets
                     System.out.println(String.format("Es sind noch %d tickets zu je 15€ verfügbar. Wie viele möchtest du kaufen?", seats));
-                        int gekaufteTickets = sc.nextInt();
-                        if (gekaufteTickets <= 0) {
-                            System.out.println("Anzahl der Tickets darf nicht 0 oder kleiner sein.");
-                        } else if (gekaufteTickets > seats) {
-                            System.out.println("Es sind nicht genügend Plätze vorhanden");
-                        } else {
-                            int preis = gekaufteTickets * 15;
-                            if (preis <= money) {
-                                money -= preis;
-                                System.out.println(String.format("Du hast %d Tickets  um %d€ gekauft und hast jetzt noch %.2f€", gekaufteTickets, preis, money));
-                                // if has enough money and seats are available subtract money and available seats from movie
-                                int remainingSeats = seats - gekaufteTickets;
-                                movies[movie - 1][3] = String.valueOf(remainingSeats);
-                                for (int i = 0; i < gekaufteTickets; i++){
-                                    moviesWatched.add(movie);
-                                }
-                            } else {
-                                System.out.println("Du hast nicht genug Geld.");
+                    int gekaufteTickets = sc.nextInt();
+                    if (gekaufteTickets <= 0) {
+                        System.out.println("Anzahl der Tickets darf nicht 0 oder kleiner sein.");
+                    } else if (gekaufteTickets > seats) {
+                        System.out.println("Es sind nicht genügend Plätze vorhanden");
+                    } else {
+                        int preis = gekaufteTickets * 15;
+                        if (preis <= money) {
+                            money -= preis;
+                            System.out.println(String.format("Du hast %d Tickets  um %d€ gekauft und hast jetzt noch %.2f€", gekaufteTickets, preis, money));
+                            // if has enough money and seats are available subtract money and available seats from movie
+                            int remainingSeats = seats - gekaufteTickets;
+                            movies[movie - 1][3] = String.valueOf(remainingSeats);
+                            for (int i = 0; i < gekaufteTickets; i++) {
+                                moviesWatched.add(movie);
                             }
+                        } else {
+                            System.out.println("Du hast nicht genug Geld.");
                         }
+                    }
                 } else {
                     System.out.println("Film ausgebucht");
                 }
@@ -80,7 +80,7 @@ public class KinoVerwaltungV1 {
                 System.out.println("Wähle einen der angezeigten Filme.");
             }
 
-    } while(movie > 0);
+        } while (movie != 0);
         System.out.println("Filme: " + moviesWatched);
-}
+    }
 }
