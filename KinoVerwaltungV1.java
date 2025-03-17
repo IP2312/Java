@@ -6,7 +6,7 @@ public class KinoVerwaltungV1 {
         int movie;
         int seats;
         double money = 0;
-        ArrayList moviesWatched = new ArrayList();
+        ArrayList <Integer> moviesWatched = new ArrayList <Integer>();
         String[][] movies = {
                 {"Heldin", "20:15", "2", "10"},
                 {"A Real Pain", "20:15", "2", "12"},
@@ -20,7 +20,7 @@ public class KinoVerwaltungV1 {
             System.out.println("Wie viel Geld hast du bei dir?");
             money = sc.nextDouble();
             if (money <= 15) {
-                System.out.println("Betrag muss mehr als Null sein");
+                System.out.println("Betrag muss mehr als 15€ sein");
             }
         } while (money <= 15);
 
