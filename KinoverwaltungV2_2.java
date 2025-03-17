@@ -2,7 +2,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class KinoverwaltungV2 {
+public class KinoverwaltungV2_2 {
     public static void main(String[] args) {
         int movie;
         int seats;
@@ -96,50 +96,22 @@ public class KinoverwaltungV2 {
 
                 case 2://Film ansehen
                     //gekaufte Filme anzeigen
-//                    int nr = 1;
-//                    for (int i = 0; i <= movies.length; i++)
-//                        if (chosenMovies.contains(i)) {
-//                            System.out.println(nr + ". " + movies[i -1 ][0]);
-//                            nr++;
-//                }
                     boughtMovies.sort(Comparator.naturalOrder());
-                    System.out.println(boughtMovies);
-
-                    // generate List of  bought movies
-                    int nextMovie;
-                    int lastMovie = 0;
-                    ArrayList<Integer>moviesList = new ArrayList<Integer>();
-                    for (int i = 0; i < boughtMovies.size(); i++){
-                        nextMovie = boughtMovies.get(i);
-                        if (nextMovie != lastMovie){
-                            moviesList.add(nextMovie);
-                        }
-                        lastMovie = nextMovie;
-                    }
                     System.out.println("Welchen Film möchtest du sehen? (0 für abbrechen)");
-                    for (int i = 0; i < moviesList.size();i++){
-                        System.out.println(i+1 +"." + movies[moviesList.get(i) - 1][0]);
+                    for (int i = 0; i < boughtMovies.size(); i++) {
+                        System.out.println(i + 1 + "." + movies[boughtMovies.get(i) - 1][0]);
                     }
                     int chosenMovie = sc.nextInt();
-                    int nrofboughtTickets = 0;
-                    for (int i = 0; i < boughtMovies.size(); i++){
-                        if (moviesList.get(chosenMovie -1 ) == boughtMovies.get(i)){
-                            nrofboughtTickets ++;
-                        }
+                    if (chosenMovie > 0 && chosenMovie <= boughtMovies.size()) {
+                        System.out.println(String.format("Du schaust den Film %s an. Viel Spaß!", movies[boughtMovies.get(chosenMovie-1)][0]));
+                        boughtMovies.remove(chosenMovie - 1);
                     }
 
-                    if (nrofboughtTickets > 0){
-                        System.out.println("Wie viele Personen?");
-                        int persons = sc.nextInt();
-                        if (persons < nrofboughtTickets){
-                            System.out.println(String.format("Du schauts dir den Film %s an. Viel Spaß!", movies[moviesList.get(chosenMovie) - 1][0]));
-                        }
+                case 3: //Gewinnspiel
 
 
-                    }
-                    else {
-                        System.out.println("Du hast für diesen Film keine Tickets.");
-                    }
+
+
             }
         }
         while (choice != 4);
