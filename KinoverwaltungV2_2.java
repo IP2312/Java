@@ -106,7 +106,7 @@ public class KinoverwaltungV2_2 {
                         }
                         chosenMovie = sc.nextInt();
                         if (chosenMovie > 0 && chosenMovie <= boughtMovies.size()) {
-                            System.out.println(String.format("Du schaust den Film %s an. Viel Spaß!", movies[boughtMovies.get(chosenMovie - 1)][0]));
+                            System.out.println(String.format("Du schaust den Film %s an. Viel Spaß!", movies[boughtMovies.get(chosenMovie - 1) - 1][0]));
                             boughtMovies.remove(chosenMovie - 1);
                         }
                     }while (chosenMovie != 0);
