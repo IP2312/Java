@@ -116,7 +116,7 @@ public class KinoverwaltungV2_2 {
                     if (money >= 5){
                         System.out.println("Du machst beim Gewinnspiel mit!");
                         Random r = new Random();
-                        int number = r.nextInt(990) + 10;
+                        int number = r.nextInt(991) + 10;
                         System.out.println("Deine Glückszahl ist: " + number);
 
                         int sum = 0;
@@ -126,7 +126,7 @@ public class KinoverwaltungV2_2 {
                            number /= 10;
                         }while (number > 0);
 
-                        if (sum > 16){
+                        if (sum >= 16){
                             System.out.println("Die Ziffernsumme deiner Glückszahl ist gößer 16. Du gewinnst 20€");
                             money += 20;
                         }
