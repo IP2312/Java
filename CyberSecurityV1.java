@@ -16,7 +16,7 @@ public class CyberSecurityV1 {
         int max = 0;
         for (int x = 0; x < turns; x++) {
 
-            ArrayList<Character> password = new ArrayList<Character>();
+            ArrayList<Character> password = new ArrayList<>();
             for (int i = 0; i < 4; i++) {
                 char randomElement = possibleCharacters.get(r.nextInt(possibleCharacters.size()));
                 password.add(randomElement);
@@ -30,7 +30,7 @@ public class CyberSecurityV1 {
                 for (int j = 0; j < nrPossibleChar; j++) {
                     for (int k = 0; k < nrPossibleChar; k++) {
                         for (int l = 0; l < nrPossibleChar; l++) {
-                            ArrayList <Character> solution = new ArrayList<Character>();
+                            ArrayList <Character> solution = new ArrayList<>();
                             solution.add(possibleCharacters.get(i));
                             solution.add(possibleCharacters.get(j));
                             solution.add(possibleCharacters.get(k));
