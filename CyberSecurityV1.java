@@ -12,7 +12,7 @@ public class CyberSecurityV1 {
         Random r = new Random();
 
         int totalNrOfGusses = 0;
-        int min = turns;
+        int min = Integer.MAX_VALUE;
         int max = 0;
         for (int x = 0; x < turns; x++) {
 
@@ -24,13 +24,14 @@ public class CyberSecurityV1 {
             }
 
             int nrOfGuesses = 0;
+            boolean found = false;
             System.out.println("Password: " + password);
             int nrPossibleChar = possibleCharacters.size();
-            for (int i = 0; i < nrPossibleChar; i++) {
-                for (int j = 0; j < nrPossibleChar; j++) {
-                    for (int k = 0; k < nrPossibleChar; k++) {
-                        for (int l = 0; l < nrPossibleChar; l++) {
-                            ArrayList <Character> solution = new ArrayList<>();
+            for (int i = 0; i < nrPossibleChar && !found; i++) {
+                for (int j = 0; j < nrPossibleChar && !found; j++) {
+                    for (int k = 0; k < nrPossibleChar && !found; k++) {
+                        for (int l = 0; l < nrPossibleChar && !found; l++) {
+                            ArrayList<Character> solution = new ArrayList<>();
                             solution.add(possibleCharacters.get(i));
                             solution.add(possibleCharacters.get(j));
                             solution.add(possibleCharacters.get(k));
@@ -39,12 +40,11 @@ public class CyberSecurityV1 {
                             if (solution.equals(password)) {
                                 System.out.println("Found it: " + solution + " == " + password);
                                 System.out.println("Took " + nrOfGuesses + " guesses");
-                                i = j = k = l = nrPossibleChar;
+                                found = true;
                             }
                         }
 
                     }
-
                 }
             }
             totalNrOfGusses += nrOfGuesses;
@@ -57,7 +57,6 @@ public class CyberSecurityV1 {
         }
         int mean = (int) Math.round((double) totalNrOfGusses / turns);
         System.out.println(String.format("On average took %d guesses each time. Best case %d guesses, worst case was %d guesses.", mean, min, max));
-
 
     }
 }
