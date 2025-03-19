@@ -1,27 +1,41 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class MineSweeperV1 {
     public static void main(String[] args) {
         boolean gameOver = false;
+        int mineCount = 0;
         Scanner sc = new Scanner(System.in);
-        int[][] map = {
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-        };
+        Random r = new Random();
+        int[][] map = new int[10][10];
+
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[0].length; j++) {
+                int mine = (r.nextInt(4))* -1;
+                System.out.println(mine);
+                map[j][i] = mine;
+                if (mine == 0){
+                    mineCount++;
+                }
+            }
+            
+        }
+//        int[][] map = {
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
+//        };
 
 
         String coordinates;
-        int mineCount = 0;
         int valueOfCoordinate = 1;
-        boolean minesCounted = false;
         int nrExplored = 0;
         do {
             System.out.println("   A  B  C  D  E  F  G  H  I  J");
@@ -30,20 +44,16 @@ public class MineSweeperV1 {
                 for (int x = 0; x < map[0].length; x++) {
                     if (map[y][x] > 0) {
                         System.out.print("[-]");
-                        nrExplored++;
                     } else if (valueOfCoordinate == 0 && map[y][x] == 0) {
                         System.out.print("[*]");
                         gameOver = true;
                     } else {
                         System.out.print("[ ]");
                     }
-                    if (map[y][x] == 0 && !minesCounted) {
-                        mineCount++;
-                    }
+
                 }
                 System.out.println();
             }
-            minesCounted = true;
             int notMined = 100 - mineCount;
             double percentexplored = (double)nrExplored/notMined;
 
@@ -54,6 +64,7 @@ public class MineSweeperV1 {
                 System.out.println(String.format("Es bleiben noch %d Minen versteckt.", mineCount));
                 System.out.println("Wo willst du nach Minen suchen?");
                 coordinates = sc.nextLine();
+                nrExplored++;
                 char[] array = coordinates.toCharArray();
 
                 char xCoordinate = array[0];
