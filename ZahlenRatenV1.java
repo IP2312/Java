@@ -74,8 +74,55 @@ public class ZahlenRatenV1 {
                         System.out.println("Möchtest du nochmal spielen(YES/NO)?");
                         answer = sc.next().toUpperCase().charAt(0);
                     } while (answer == 'Y');
+
+                case 3:
+                    do {
+                        int randomNr = r.nextInt(101);
+                        System.out.println(randomNr);
+                        int tip;
+                        boolean myTurn = r.nextBoolean();
+                        int bigger = Integer.MAX_VALUE;
+                        int smaller = Integer.MIN_VALUE;
+                        ArrayList<Integer> tips = new ArrayList<>();
+                        do {
+                            if (myTurn) {
+                                System.out.println("Gib einen Tip ab.");
+                                tip = sc.nextInt();
+
+                                myTurn = false;
+                            } else {
+                                //calculate tip of computer
+
+                                tip = smaller + (bigger - smaller)/2;
+                                System.out.println("Tip des Computers: " + tip);
+
+                                myTurn = true;
+                            }
+                            tips.add(tip);
+                            if (tip == randomNr) {
+                                System.out.println("Erraten");
+                            } else if (tip > randomNr) {
+                                System.out.println("Kleiner");
+                                if (smaller < tip){
+                                    smaller = tip;
+                                }
+                            } else {
+                                System.out.println("Größer");
+                                if (bigger > tip){
+                                    bigger = tip;
+                                }
+                            }
+                            System.out.println(tips);
+                        } while (tip != randomNr);
+
+                        System.out.println("Möchtest du nochmal spielen(YES/NO)?");
+                        answer = sc.next().toUpperCase().charAt(0);
+                    } while (answer == 'Y');
+
+
                 case 4:
                     System.out.println("Spiel beendet!");
+
 
             }
 
