@@ -81,8 +81,8 @@ public class ZahlenRatenV1 {
                         System.out.println(randomNr);
                         int tip;
                         boolean myTurn = r.nextBoolean();
-                        int bigger = Integer.MAX_VALUE;
-                        int smaller = Integer.MIN_VALUE;
+                        int bigger = 100;
+                        int smaller = 0;
                         ArrayList<Integer> tips = new ArrayList<>();
                         do {
                             if (myTurn) {
@@ -103,13 +103,13 @@ public class ZahlenRatenV1 {
                                 System.out.println("Erraten");
                             } else if (tip > randomNr) {
                                 System.out.println("Kleiner");
-                                if (smaller < tip){
-                                    smaller = tip;
+                                if (bigger > tip){
+                                    bigger = tip;
                                 }
                             } else {
                                 System.out.println("Größer");
-                                if (bigger > tip){
-                                    bigger = tip;
+                                if (smaller < tip){
+                                    smaller = tip;
                                 }
                             }
                             System.out.println(tips);
