@@ -1,25 +1,33 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class MineSweeperV1 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[][] map = {
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-        };
-
-
-        String coordinates;
+        boolean gameOver = false;
         int mineCount = 0;
-        int valueOfCoordinate;
+        String coordinates;
+        int valueOfCoordinate = 1;
+        int nrExplored = 0;
+        int[][] map = new int[10][10];
+
+        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
+
+        //create map
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[0].length; j++) {
+                int mine = (r.nextInt(4))* -1;
+                System.out.println(mine);
+                map[j][i] = mine;
+                if (mine == 0){
+                    mineCount++;
+                }
+            }
+            
+        }
+
+
+        //display map
         do {
             System.out.println("   A  B  C  D  E  F  G  H  I  J");
             for (int y = 0; y < map.length; y++) {
@@ -27,39 +35,42 @@ public class MineSweeperV1 {
                 for (int x = 0; x < map[0].length; x++) {
                     if (map[y][x] > 0) {
                         System.out.print("[-]");
+                    } else if (valueOfCoordinate == 0 && map[y][x] == 0) {
+                        System.out.print("[*]");
+                        gameOver = true;
                     } else {
                         System.out.print("[ ]");
-                    }
-                    if (map[y][x] == 0) {
-                        mineCount++;
                     }
                 }
                 System.out.println();
             }
-            System.out.println("Du hasts x% des verminten Gebiets auf Minen gecheckt");
-            System.out.println(String.format("Es bleiben noch %d Minen versteckt.", mineCount));
-            System.out.println("Wo willst du nach Minen suchen?");
-            coordinates = sc.nextLine();
-            System.out.println(coordinates);
-            char[] array = coordinates.toCharArray();
-
-            char xCoordinate = array[0];
-            int xvalue = (int) xCoordinate - 'A';
-            System.out.println(xvalue);
+            int notMined = 100 - mineCount;
+            double percentexplored = (double)nrExplored/notMined * 100;
 
 
-            char yCoordinate = array[1];
-            int yvalue = (int) yCoordinate - '0';
-            System.out.println(yvalue);
 
+            if (!gameOver) {
+                System.out.println(String.format("Du hasts %d/%d (%.2f%%) des verminten Gebiets auf Minen gecheckt",nrExplored,notMined, percentexplored));
+                System.out.println(String.format("Es bleiben noch %d Minen versteckt.", mineCount));
+                System.out.println("Wo willst du nach Minen suchen?");
+                coordinates = sc.nextLine();
+                nrExplored++;
+                char[] array = coordinates.toCharArray();
 
-            valueOfCoordinate = map[yvalue][xvalue];
-            System.out.println(valueOfCoordinate);
-            if (valueOfCoordinate != 0) {
-                map[yvalue][xvalue] = map[yvalue][xvalue] * -1;
+                char xCoordinate = array[0];
+                int xvalue = (int) xCoordinate - 'A';
+
+                char yCoordinate = array[1];
+                int yvalue = (int) yCoordinate - '0';
+
+                valueOfCoordinate = map[yvalue][xvalue];
+                if (valueOfCoordinate != 0) {
+                    map[yvalue][xvalue] = map[yvalue][xvalue] * -1;
+                }
             }
 
-        } while (valueOfCoordinate != 0);
+
+        } while (!gameOver);
 
     }
 }
