@@ -5,10 +5,15 @@ public class MineSweeperV1 {
     public static void main(String[] args) {
         boolean gameOver = false;
         int mineCount = 0;
-        Scanner sc = new Scanner(System.in);
-        Random r = new Random();
+        String coordinates;
+        int valueOfCoordinate = 1;
+        int nrExplored = 0;
         int[][] map = new int[10][10];
 
+        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
+
+        //create map
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 int mine = (r.nextInt(4))* -1;
@@ -20,23 +25,9 @@ public class MineSweeperV1 {
             }
             
         }
-//        int[][] map = {
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//                {0, -1, -2, -3, 0, -1, -2, -3, 0, -1},
-//        };
 
 
-        String coordinates;
-        int valueOfCoordinate = 1;
-        int nrExplored = 0;
+        //display map
         do {
             System.out.println("   A  B  C  D  E  F  G  H  I  J");
             for (int y = 0; y < map.length; y++) {
