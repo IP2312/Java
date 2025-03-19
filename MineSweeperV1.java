@@ -41,12 +41,11 @@ public class MineSweeperV1 {
                     } else {
                         System.out.print("[ ]");
                     }
-
                 }
                 System.out.println();
             }
             int notMined = 100 - mineCount;
-            double percentexplored = (double)nrExplored/notMined;
+            double percentexplored = (double)nrExplored/notMined * 100;
 
 
 
@@ -61,10 +60,8 @@ public class MineSweeperV1 {
                 char xCoordinate = array[0];
                 int xvalue = (int) xCoordinate - 'A';
 
-
                 char yCoordinate = array[1];
                 int yvalue = (int) yCoordinate - '0';
-
 
                 valueOfCoordinate = map[yvalue][xvalue];
                 if (valueOfCoordinate != 0) {
