@@ -27,9 +27,8 @@ public class RPGV1 {
 
         do {
             //print state
-            System.out.println(choices[movetoID][resultText]);
+            System.out.println(choices[currentChoice][resultText]);
             currentChoice = movetoID;
-
 
 
 
