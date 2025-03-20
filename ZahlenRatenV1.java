@@ -11,7 +11,7 @@ public class ZahlenRatenV1 {
         do {
 
             do {
-                System.out.println("Welches Level möchtest du spielen? Lv:(1 2 3) 4 zum beenden");
+                System.out.println("Welches Level möchtest du spielen? Lv:(1 2 3) 0 zum beenden");
                 level = sc.nextInt();
             } while (level < 0 || level > 4);
 
@@ -125,12 +125,12 @@ public class ZahlenRatenV1 {
                     break;
 
 
-                case 4:
+                case 0:
                     System.out.println("Spiel beendet!");
 
 
             }
 
-        } while (level != 4);
+        } while (level != 0);
     }
 }
