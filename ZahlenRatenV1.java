@@ -85,7 +85,7 @@ public class ZahlenRatenV1 {
                         int tip;
                         boolean myTurn = r.nextBoolean();
                         int max = 100;
-                        int min = 0;
+                        int lowerthan = 0;
                         ArrayList<Integer> tips = new ArrayList<>();
                         do {
                             if (myTurn) {
@@ -94,7 +94,7 @@ public class ZahlenRatenV1 {
                             } else {
                                 //calculate tip of computer
 
-                                tip = min + (max - min)/2;
+                                tip = lowerthan + (max - lowerthan)/2;
                                 System.out.println("Tip des Computers: " + tip);
                             }
                             tips.add(tip);
@@ -113,8 +113,8 @@ public class ZahlenRatenV1 {
                                 }
                             } else {
                                 System.out.println("Größer");
-                                if (min < tip){
-                                    min = tip;
+                                if (lowerthan < tip){
+                                    lowerthan = tip;
                                 }
                             }
                             System.out.println(tips);
