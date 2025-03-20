@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
@@ -85,7 +84,7 @@ public class ZahlenRatenV1 {
                         int tip;
                         boolean myTurn = r.nextBoolean();
                         int max = 100;
-                        int lowerthan = 0;
+                        int min = 0;
                         ArrayList<Integer> tips = new ArrayList<>();
                         do {
                             if (myTurn) {
@@ -94,7 +93,7 @@ public class ZahlenRatenV1 {
                             } else {
                                 //calculate tip of computer
 
-                                tip = lowerthan + (max - lowerthan)/2;
+                                tip = min + (max - min)/2;
                                 System.out.println("Tip des Computers: " + tip);
                             }
                             tips.add(tip);
@@ -113,8 +112,8 @@ public class ZahlenRatenV1 {
                                 }
                             } else {
                                 System.out.println("Größer");
-                                if (lowerthan < tip){
-                                    lowerthan = tip;
+                                if (min < tip){
+                                    min = tip;
                                 }
                             }
                             System.out.println(tips);
