@@ -11,7 +11,7 @@ public class RPGV1 {
         int positionchoiceText = 3;
         int positionmovetoID = 4;
         int positionresultText = 3;
-        boolean repeate = true;
+        boolean repeate;
         Scanner sc = new Scanner(System.in);
 
         String[][] choices = {
