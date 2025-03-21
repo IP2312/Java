@@ -64,7 +64,7 @@ public class GaudiMitStatistikV3 {
             median = sortedArray[arrayLength/2];
         }
         System.out.println(String.format("Median: %.1f", median));
-        System.out.println("test");
+        System.out.println("test2");
 
 
 
