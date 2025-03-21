@@ -6,15 +6,14 @@ import java.util.ArrayList;
 public class RPGV1 {
     public static void main(String[] args) {
         int currentChoice = 0;
-
         int positonChoice = 2;
         int positionID = 1;
         int positionchoiceText = 3;
         int positionmovetoID = 4;
         int positionresultText = 3;
         boolean repeate = true;
-
         Scanner sc = new Scanner(System.in);
+
         String[][] choices = {
                 //{parentID, ID, choiceText, moveToID}
                 {"-1", "0", "", "Du stehst in einer Bar."},
@@ -26,8 +25,6 @@ public class RPGV1 {
                 {"1", "4", "Lauf von dem Monster davon", "Du läufst wie ein Feigling zurück zut Bar", "0"},
 
         };
-        System.out.println(choices[0].length);
-        System.out.println(choices[2].length);
 
 
         do {
@@ -36,7 +33,7 @@ public class RPGV1 {
 
 
             do {
-                System.out.println("-----------------------");
+                System.out.println("------------------------------------");
                 //search for viable options and print them
                 ArrayList<Integer> viableChoices = new ArrayList<>();
                 for (int i = 0; i < choices.length; i++) {
@@ -46,25 +43,24 @@ public class RPGV1 {
                         System.out.println(choices[i][positionID] + ".) " + choices[i][positonChoice]);
                     }
                 }
-                System.out.println("-----------------------");
-                System.out.println("Was willst du als nächstes tun?");
+                System.out.println("------------------------------------");
 
-                currentChoice = sc.nextInt();
+                do {
+                    System.out.println("Was willst du als nächstes tun?");
+
+                    currentChoice = sc.nextInt();
+                } while (!viableChoices.contains(currentChoice));
+
                 //print result of choice
-
-
                 System.out.println(choices[currentChoice][positionchoiceText]);
 
                 if (choices[currentChoice].length == 5) {
-                    currentChoice = Integer.valueOf(choices[currentChoice][positionmovetoID]);
+                    currentChoice = Integer.parseInt(choices[currentChoice][positionmovetoID]);
                     repeate = false;
-                }
-                else{
+                } else {
                     repeate = true;
                 }
-            }while (repeate == true);
-
-
+            } while (repeate);
         } while (true);
     }
 }
