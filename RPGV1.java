@@ -1,16 +1,18 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class RPGV1 {
     public static void main(String[] args) {
         int currentChoice = 0;
+
         int positonChoice = 2;
         int positionID = 1;
         int positionchoiceText = 3;
-        int movetoID = 0;
         int positionmovetoID = 4;
-
-        int resultText = 3;
+        int positionresultText = 3;
+        boolean repeate = true;
 
         Scanner sc = new Scanner(System.in);
         String[][] choices = {
@@ -22,14 +24,15 @@ public class RPGV1 {
 
                 {"1", "3", "Kämpf gegen das Monster.", "Das Monster ist ein harter Gegner, aber du besiegst es", "1"},
                 {"1", "4", "Lauf von dem Monster davon", "Du läufst wie ein Feigling zurück zut Bar", "0"},
+
         };
+        System.out.println(choices[0].length);
+        System.out.println(choices[2].length);
 
 
         do {
             //print state
-            System.out.println(choices[currentChoice][resultText]);
-            currentChoice = movetoID;
-
+            System.out.println(choices[currentChoice][positionresultText]);
 
 
             do {
@@ -45,14 +48,21 @@ public class RPGV1 {
                 }
                 System.out.println("-----------------------");
                 System.out.println("Was willst du als nächstes tun?");
+
                 currentChoice = sc.nextInt();
                 //print result of choice
+
+
                 System.out.println(choices[currentChoice][positionchoiceText]);
 
-                if (choices[currentChoice].length > 4) {
-                    movetoID = Integer.valueOf(choices[currentChoice][positionmovetoID]);
+                if (choices[currentChoice].length == 5) {
+                    currentChoice = Integer.valueOf(choices[currentChoice][positionmovetoID]);
+                    repeate = false;
                 }
-            }while (choices[currentChoice].length <= 4);
+                else{
+                    repeate = true;
+                }
+            }while (repeate == true);
 
 
         } while (true);
