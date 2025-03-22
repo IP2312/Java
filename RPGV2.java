@@ -1,10 +1,16 @@
 import java.util.Scanner;
+import java.util.Random;
 import java.util.ArrayList;
 
 public class RPGV2 {
     public static void main(String[] args) {
         int currentChoice = 0;
         Scanner sc = new Scanner(System.in);
+        Random r = new Random();
+        int lifeMax = 10;
+        int pLife = lifeMax;
+        int pGold = 0;
+
         String[][] choices = {
                 //{parentID, ID, choiceText, moveToID}
                 {"-1", "0", "", "Du stehst in einer Bar."},
@@ -44,7 +50,6 @@ public class RPGV2 {
             if (choices[currentChoice].length == 5){
                 System.out.println(choices[currentChoice][3]);
                 currentChoice = Integer.parseInt(choices[currentChoice][4]);
-
             }
         }while (true);
     }
