@@ -10,7 +10,7 @@ public class GaudiMitStatistikV3 {
         Random r = new Random();
         int[] randomArray = new int[arrayLength];
         for (int i = 0; i < arrayLength; i++) {
-            int x = r.nextInt(101);
+            int x = r.nextInt(11);
             randomArray[i] = x;
         }
 
@@ -64,7 +64,33 @@ public class GaudiMitStatistikV3 {
             median = sortedArray[arrayLength/2];
         }
         System.out.println(String.format("Median: %.1f", median));
-        System.out.println("test2");
+
+        //modalwert
+        int max = 0;
+        int mode = 0;
+        for (int i = 0; i < arrayLength; i++) {
+            int count = 0;
+            for (int j = 0; j < arrayLength; j++) {
+                if (randomArray[i] == randomArray[j]) {
+                    count++;
+                }
+
+            }
+            if (count > max){
+                max = count;
+                mode = randomArray[i];
+            }
+        }
+        System.out.println("Modalwert: " + mode);
+
+        //Standartabweichung
+        double D = 0;
+        int divsum = 0;
+        for (int i = 0; i < arrayLength; i++) {
+            divsum = (int) (divsum + Math.abs(randomArray[i] - mean));
+        }
+        D = (double)1/5 * divsum;
+        System.out.println("Mittlere absolute Abweichung: " + D);
 
 
 
