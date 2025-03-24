@@ -48,15 +48,7 @@ public class ZahlenRatenV2 {
                     feedback(dif, tip);
                     tips.add(tip);
                     System.out.println("Tips: " + tips);
-
-                    for (int i = 0; i <= 100; i++) {
-                        if (possiblevalues.contains(i)) {
-                            System.out.print(i + ",");
-                        } else {
-                            System.out.print("-");
-                        }
-                    }
-                    System.out.println();
+                    printremainingvalues();
                     myTurn = !myTurn;
                 }
             } while (tip != randomNr);
@@ -89,5 +81,15 @@ public class ZahlenRatenV2 {
                 possiblevalues.remove(i);
             }
         }
+    }
+    static void printremainingvalues(){
+        for (int i = 0; i <= 100; i++) {
+            if (possiblevalues.contains(i)) {
+                System.out.print(i + ",");
+            } else {
+                System.out.print("-");
+            }
+        }
+        System.out.println();
     }
 }
