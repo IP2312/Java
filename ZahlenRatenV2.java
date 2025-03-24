@@ -21,6 +21,7 @@ public class ZahlenRatenV2 {
             }
 
 
+
             int tip;
             do {
                 if (myTurn) {
@@ -36,12 +37,15 @@ public class ZahlenRatenV2 {
 
                 }
                 System.out.println("Tip: " + tip);
-                myTurn = !myTurn;
-
 
                 int dif = Math.abs(randomNr - tip);
                 if (tip == randomNr) {
-                    System.out.println("Erraten");
+                    if (myTurn){
+                        System.out.println("Erraten");
+                    }else {
+                        System.out.println("Computer gewinnt.");
+                    }
+
                 } else {
                     if (dif <= 3) {
                         possiblevalues.remove(Integer.valueOf(tip));
@@ -49,7 +53,7 @@ public class ZahlenRatenV2 {
                         remove(1, 3, tip);
                     } else if (dif <= 10) {
                         System.out.println("relativ nahe (4-10 daneben)");
-                        remove(1, 3, tip);
+                        remove(4, 10, tip);
                     } else if (dif <= 20) {
                         System.out.println("Nicht ganz so weit weg (11-20) daneben");
                         remove(11, 20, tip);
@@ -65,7 +69,17 @@ public class ZahlenRatenV2 {
                     }
                     tips.add(tip);
                     System.out.println("Tips: " + tips);
-                    System.out.println(possiblevalues);
+
+                    for (int i = 0; i <= 100; i++) {
+                        if (possiblevalues.contains(i)){
+                            System.out.print(i + ",");
+                        }
+                        else {
+                            System.out.print("-");
+                        }
+                    }
+                    System.out.println();
+                    myTurn = !myTurn;
                 }
             } while (tip != randomNr);
             System.out.println("Möchtest du nochmal spielen(YES/NO)?");
