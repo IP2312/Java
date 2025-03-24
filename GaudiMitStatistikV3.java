@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 public class GaudiMitStatistikV3 {
@@ -84,13 +83,13 @@ public class GaudiMitStatistikV3 {
         System.out.println("Modalwert: " + mode);
 
         //Standartabweichung
-        double D = 0;
-        int divsum = 0;
+        double D;
+        double divsum = 0;
         for (int i = 0; i < arrayLength; i++) {
-            divsum = (int) (divsum + Math.abs(randomArray[i] - mean));
+            divsum = (divsum + Math.abs(randomArray[i] - mean));
         }
-        D = (double)1/5 * divsum;
-        System.out.println("Mittlere absolute Abweichung: " + D);
+        D = (double)1/arrayLength * divsum;
+        System.out.println(String.format("Mittlere absolute Abweichung: %.1f", D));
 
 
 
