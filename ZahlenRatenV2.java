@@ -3,13 +3,15 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class ZahlenRatenV2 {
+    static ArrayList<Integer> possiblevalues = new ArrayList<>();
+
     public static void main(String[] args) {
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
         char answer;
         boolean myTurn = r.nextBoolean();
         ArrayList<Integer> tips = new ArrayList<>();
-        ArrayList<Integer> possiblevalues = new ArrayList<>();
+
 
         do {
             int randomNr = r.nextInt(101);
@@ -44,13 +46,13 @@ public class ZahlenRatenV2 {
                     if (dif <= 3) {
                         possiblevalues.remove(Integer.valueOf(tip));
                         System.out.println("fast da (1-3 daneben)");
-                        remove(1, 3, tip, possiblevalues);
+                        remove(1, 3, tip);
                     } else if (dif <= 10) {
                         System.out.println("relativ nahe (4-10 daneben)");
-                        remove(1, 3, tip, possiblevalues);
+                        remove(1, 3, tip);
                     } else if (dif <= 20) {
                         System.out.println("Nicht ganz so weit weg (11-20) daneben");
-                        remove(11, 20, tip, possiblevalues);
+                        remove(11, 20, tip);
                     } else {
                         System.out.println("Weit weg (>20) daneben");
                         for (int i = possiblevalues.size() - 1; i >= 0; i--) {
@@ -72,10 +74,10 @@ public class ZahlenRatenV2 {
 
     }
 
-    static void remove(int min, int max, int tip, ArrayList<Integer> possibelevalues1) {
-        for (int i = possibelevalues1.size() - 1; i >= 0; i--) {
-            if (Math.abs(possibelevalues1.get(i) - tip) < min || Math.abs(possibelevalues1.get(i) - tip) > max) {
-                possibelevalues1.remove(i);
+    static void remove(int min, int max, int tip) {
+        for (int i = possiblevalues.size() - 1; i >= 0; i--) {
+            if (Math.abs(possiblevalues.get(i) - tip) < min || Math.abs(possiblevalues.get(i) - tip) > max) {
+                possiblevalues.remove(i);
             }
         }
     }
