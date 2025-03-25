@@ -8,6 +8,7 @@ public class RPGV2 {
         Scanner sc = new Scanner(System.in);
         Random r = new Random();
         int lifeMax = 10;
+                int mLife = 0;
         int pLife = lifeMax;
         int pGold = 1000;
         boolean gameOver = false;
@@ -76,7 +77,7 @@ public class RPGV2 {
                     }
 
                 case 4:
-                    int mLife = r.nextInt(18) + 3;
+                    mLife = r.nextInt(18) + 3;
                     System.out.printf("Das Monster hat insgesammt %d Leben, und du noch %d!", mLife, pLife);
                     currentChoice = Integer.parseInt(choices[currentChoice][4]);
 
