@@ -75,7 +75,16 @@ public class RPGV2 {
                         currentChoice = Integer.parseInt(choices[currentChoice][4]);
                     }
 
-                case 6:
+                case 4:
+                    int mLife = r.nextInt(18) + 3;
+                    System.out.printf("Das Monster hat insgesammt %d Leben, und du noch %d!", mLife, pLife);
+                    currentChoice = Integer.parseInt(choices[currentChoice][4]);
+
+                case 7:
+                    System.out.println("Du wirfst dich in die Schlacht!");
+                    int pAttack = r.nextInt(pLife) + 1;
+                    int mAttack = r.nextInt(mLife) + 1;
+
             }
 
         }while (!gameOver);
