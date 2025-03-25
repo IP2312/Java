@@ -85,7 +85,14 @@ public class RPGV2 {
                 case 7:
                     int pAttack = r.nextInt(pLife) + 1;
                     int mAttack = r.nextInt(mLife) + 1;
-                    System.out.println("Das monster Pubst");
+                    System.out.println(choices[currentChoice][3]);
+                    mLife -= pAttack;
+                    pLife -= mAttack;
+                    System.out.printf("Du erwischt das Monster mit %d Schaden. Es hat noch %d Leben.",pAttack, mLife);
+                    System.out.println();
+                    System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.", mAttack,pLife);
+
+
                     currentChoice = Integer.parseInt(choices[currentChoice][4]);
 
                     break;
