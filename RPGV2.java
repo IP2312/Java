@@ -9,7 +9,8 @@ public class RPGV2 {
         Random r = new Random();
         int lifeMax = 10;
         int pLife = lifeMax;
-        int pGold = 0;
+        int pGold = 1000;
+        boolean gameOver = false;
 
         String[][] choices = {
                 //{parentID, ID, choiceText, moveToID}
@@ -47,10 +48,36 @@ public class RPGV2 {
             System.out.println("Was möchtest du tun?");
             currentChoice = sc.nextInt();
 
-            if (choices[currentChoice].length == 5){
-                System.out.println(choices[currentChoice][3]);
-                currentChoice = Integer.parseInt(choices[currentChoice][4]);
+            switch (currentChoice) {
+                case 2:
+                    if (pGold > 100){
+                        pGold -= 100;
+                        pLife += 3;
+                        System.out.println(choices[currentChoice][3]);
+                        System.out.printf("Dein Lebensdurst kehrt zurück! +3 Leben, jetzt hast du wieder %d Leben!", pLife);
+                        System.out.println();
+                    }
+                    else {
+                        System.out.println("Du hast zu wenig Geld");
+                    }
+                    currentChoice = Integer.parseInt(choices[currentChoice][4]);
+
+                case 3:
+                    if (pGold >= 1000 && lifeMax >= 15){
+                        System.out.println(choices[10][3]);
+                        gameOver = true;
+                    }
+                    else {
+                        System.out.println(choices[currentChoice][3]);
+                        System.out.println("Die Prinzessin belächelt dich nur verächtlich. So einen armen Schlucker soll sie heiraten? Und so wenig Lebenserfahrung! Tz tz!");
+                        System.out.printf("Du braucht noch sicher %d Gold dafür, Junge! Und %d Jahre Erfahrung!",1000-pGold,15- pLife );
+                        System.out.println();
+                        currentChoice = Integer.parseInt(choices[currentChoice][4]);
+                    }
+
+                case 6:
             }
-        }while (true);
+
+        }while (!gameOver);
     }
 }

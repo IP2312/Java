@@ -111,5 +111,9 @@ public class MineSweeperV2 {
         return xy;
     }
 
+    static void uncovermap(){
+
+    }
+
 }
 
