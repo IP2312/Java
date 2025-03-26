@@ -21,6 +21,10 @@ public class RPGV2 {
         boolean gameOver = false;
 
         String run = "run";
+        String monster = "monster";
+        String drink = "drink";
+        String money = "money";
+
 
         String[][] choices = {
                 //{parentID, ID, choiceText, moveToID}
@@ -60,12 +64,7 @@ public class RPGV2 {
 
             switch (currentChoice) {
                 case 1:
-                    try {
-                        String asciiArt = new String(Files.readAllBytes(Paths.get("ASCII/ascii-art.txt")));
-                        System.out.println(asciiArt);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    ascii(monster);
                     break;
                 case 2:
                     if (pGold >= 100) {
@@ -73,19 +72,9 @@ public class RPGV2 {
                         pLife += 3;
                         System.out.println(choices[currentChoice][3]);
                         System.out.printf("Dein Lebensdurst kehrt zurück! +3 Leben, jetzt hast du wieder %d Leben!", pLife);
-                        try {
-                            String asciiArt = new String(Files.readAllBytes(Paths.get("ASCII/drink.txt")));
-                            System.out.println(asciiArt);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        ascii(drink);
                     } else {
-                        try {
-                            String asciiArt = new String(Files.readAllBytes(Paths.get("ASCII/money.txt")));
-                            System.out.println(asciiArt);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        ascii(money);
                         System.out.println("Du hast zu wenig Geld");
                     }
                     currentChoice = Integer.parseInt(choices[currentChoice][4]);
@@ -141,6 +130,7 @@ public class RPGV2 {
                     break;
                 case 8:
                     System.out.println(choices[currentChoice][3]);
+                    ascii(run);
                     mAttack = r.nextInt(mLife) + 1;
                     pLife -= mAttack;
                     System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.\n", mAttack, pLife);

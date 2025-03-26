@@ -49,8 +49,11 @@ public class MineSweeperV2 {
                 for (int i = valueOfCoordinate +1; i < -valueOfCoordinate; i++) {
                     for (int j = valueOfCoordinate +1; j < -valueOfCoordinate; j++) {
                         if (yvalue + i >= 0 && xvalue + j >= 0 && yvalue + i < 10 && xvalue + j < 10) {
+                            if (map[yvalue + i][xvalue + j] < 0 && map[yvalue + i][xvalue + j] > -4){
+                                nrExplored++;
+                            }
                             map[yvalue + i][xvalue + j] = Math.abs(map[yvalue + i][xvalue + j]);
-                            nrExplored++;
+
                         }
                     }
 
