@@ -16,9 +16,11 @@ public class RPGV2 {
         int mLife = 0;
         int pLife = lifeMax;
         int mAttack;
-        int pGold = 0;
+        int pGold = 100;
         int lute = 0;
         boolean gameOver = false;
+
+        String run = "run";
 
         String[][] choices = {
                 //{parentID, ID, choiceText, moveToID}
@@ -66,13 +68,24 @@ public class RPGV2 {
                     }
                     break;
                 case 2:
-                    if (pGold > 100) {
+                    if (pGold >= 100) {
                         pGold -= 100;
                         pLife += 3;
                         System.out.println(choices[currentChoice][3]);
                         System.out.printf("Dein Lebensdurst kehrt zurück! +3 Leben, jetzt hast du wieder %d Leben!", pLife);
-                        System.out.println();
+                        try {
+                            String asciiArt = new String(Files.readAllBytes(Paths.get("ASCII/drink.txt")));
+                            System.out.println(asciiArt);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
+                        try {
+                            String asciiArt = new String(Files.readAllBytes(Paths.get("ASCII/money.txt")));
+                            System.out.println(asciiArt);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("Du hast zu wenig Geld");
                     }
                     currentChoice = Integer.parseInt(choices[currentChoice][4]);
@@ -96,6 +109,7 @@ public class RPGV2 {
                     currentChoice = Integer.parseInt(choices[currentChoice][4]);
                     break;
                 case 5:
+                    ascii(run);
                     System.out.println(choices[currentChoice][3]);
                     currentChoice = Integer.parseInt(choices[currentChoice][4]);
                     break;
@@ -130,11 +144,10 @@ public class RPGV2 {
                     mAttack = r.nextInt(mLife) + 1;
                     pLife -= mAttack;
                     System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.\n", mAttack, pLife);
-                    if (pLife <= 0){
+                    if (pLife <= 0) {
                         gameOver = true;
                         System.out.println(choices[9][3]);
-                    }
-                    else {
+                    } else {
                         currentChoice = Integer.parseInt(choices[currentChoice][4]);
                     }
 
@@ -145,5 +158,13 @@ public class RPGV2 {
         } while (!gameOver);
 
 
+    }
+    static void ascii (String picture) {
+        try {
+            String asciiArt = new String(Files.readAllBytes(Paths.get(String.format("ASCII/%s.txt", picture))));
+            System.out.println(asciiArt);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
