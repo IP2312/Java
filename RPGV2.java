@@ -7,9 +7,10 @@ public class RPGV2 {
         int currentChoice = 0;
         Scanner sc = new Scanner(System.in);
         Random r = new Random();
-        int lifeMax = 10;
+        int lifeMax = 15;
         int mLife = 0;
         int pLife = lifeMax;
+        int mAttack;
         int pGold = 1000;
         boolean gameOver = false;
 
@@ -84,10 +85,8 @@ public class RPGV2 {
                     break;
                 case 7:
                     int pAttack = r.nextInt(pLife) + 1;
-                    int mAttack = r.nextInt(mLife) + 1;
                     System.out.println(choices[currentChoice][3]);
                     mLife -= pAttack;
-                    pLife -= mAttack;
                     System.out.printf("Du erwischt das Monster mit %d Schaden. Es hat noch %d Leben.\n", pAttack, mLife);
                     if (mLife <= 0) {
                         System.out.println("Du hast das Monster besiegt!");
@@ -98,6 +97,8 @@ public class RPGV2 {
                         System.out.printf("Du findest in der Nähe des Monsters %d Gold - das du dir natürlich schnappst!\n", lute);
                         currentChoice = 1;
                     } else {
+                        mAttack = r.nextInt(mLife) + 1;
+                        pLife -= mAttack;
                         System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.", mAttack, pLife);
                         if (pLife <= 0) {
                             gameOver = true;
@@ -109,6 +110,17 @@ public class RPGV2 {
 
                     break;
                 case 8:
+                    System.out.println(choices[currentChoice][3]);
+                    mAttack = r.nextInt(mLife) + 1;
+                    pLife -= mAttack;
+                    System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.\n", mAttack, pLife);
+                    if (pLife <= 0){
+                        gameOver = true;
+                        System.out.println(choices[9][3]);
+                    }
+                    else {
+                        currentChoice = Integer.parseInt(choices[currentChoice][4]);
+                    }
 
 
             }
