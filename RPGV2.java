@@ -24,7 +24,7 @@ public class RPGV2 {
                 {"1", "4", "Kämpf gegen das Monster", "", "6"},
                 {"1", "5", "Lauf vor dem Monster davon", "Du läufst wie ein Feigling zurück zur Bar.", "0"},
 
-                {"4", "6", "", ""},
+                {"4", "6", "66", "666"},
 
                 {"6", "7", "Versuche das Monster mit deinem Schwert zu erwischen", "Du wirfst dich in die Schlacht!", "6"},
                 {"6", "8", "Es ist Zeit zu gehen", "Du versuchst zu flüchten, doch das Monster verfolgt dich.", "0"},
@@ -88,14 +88,28 @@ public class RPGV2 {
                     System.out.println(choices[currentChoice][3]);
                     mLife -= pAttack;
                     pLife -= mAttack;
-                    System.out.printf("Du erwischt das Monster mit %d Schaden. Es hat noch %d Leben.",pAttack, mLife);
-                    System.out.println();
-                    System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.", mAttack,pLife);
-
-
-                    currentChoice = Integer.parseInt(choices[currentChoice][4]);
+                    System.out.printf("Du erwischt das Monster mit %d Schaden. Es hat noch %d Leben.\n", pAttack, mLife);
+                    if (mLife <= 0) {
+                        System.out.println("Du hast das Monster besiegt!");
+                        lifeMax++;
+                        int lute = r.nextInt(pLife * 100) + 1;
+                        pGold += lute;
+                        System.out.printf("Du gewinnst an Erfahrung und hast jetzt %d maximale Lebenspunkte", lifeMax);
+                        System.out.printf("Du findest in der Nähe des Monsters %d Gold - das du dir natürlich schnappst!\n", lute);
+                        currentChoice = 1;
+                    } else {
+                        System.out.printf("Das Monster hat dich für %d Schaden erwischt. Du hast noch %d Leben.", mAttack, pLife);
+                        if (pLife <= 0) {
+                            gameOver = true;
+                            System.out.println(choices[9][3]);
+                        } else {
+                            currentChoice = Integer.parseInt(choices[currentChoice][4]);
+                        }
+                    }
 
                     break;
+                case 8:
+
 
             }
 

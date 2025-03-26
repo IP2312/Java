@@ -21,41 +21,39 @@ public class MineSweeperV2 {
             double percentexplored = (double) nrExplored / notMined * 100;
 
 
-            if (!gameOver) {
-                System.out.println(String.format("Du hasts %d/%d (%.2f%%) des verminten Gebiets auf Minen gecheckt", nrExplored, notMined, percentexplored));
-                System.out.println(String.format("Es bleiben noch %d Minen versteckt.", mineCount));
+            System.out.println(String.format("Du hasts %d/%d (%.2f%%) des verminten Gebiets auf Minen gecheckt", nrExplored, notMined, percentexplored));
+            System.out.println(String.format("Es bleiben noch %d Minen versteckt.", mineCount));
 
-                do {
-                    System.out.println("Wo willst du nach Minen suchen?");
-                    coordinates = sc.nextLine().toUpperCase();
-                } while (!validateInput(coordinates));
+            do {
+                System.out.println("Wo willst du nach Minen suchen?");
+                coordinates = sc.nextLine().toUpperCase();
+            } while (!validateInput(coordinates));
 
-                int xvalue = convertInput(coordinates)[0];
-                int yvalue = convertInput(coordinates)[1];
+            int xvalue = convertInput(coordinates)[0];
+            int yvalue = convertInput(coordinates)[1];
 
-                valueOfCoordinate = map[yvalue][xvalue];
-                if (valueOfCoordinate == -4){
-                    gameOver = true;
-                    System.out.println("Game over!");
-                    for (int y = 0; y < map.length; y++) {
-                        for (int x = 0; x < map[0].length; x++) {
-                            if (map[x][y] == -4){
-                                map[x][y] *= -1;
-                            }
+            valueOfCoordinate = map[yvalue][xvalue];
+            if (valueOfCoordinate == -4){
+                gameOver = true;
+                System.out.println("Game over!");
+                for (int y = 0; y < map.length; y++) {
+                    for (int x = 0; x < map[0].length; x++) {
+                        if (map[x][y] == -4){
+                            map[x][y] *= -1;
                         }
                     }
-                    displaymap(map);
                 }
-                else if(valueOfCoordinate < 0) {
-                    nrExplored++;
-                    for (int i = valueOfCoordinate +1; i < -valueOfCoordinate; i++) {
-                        for (int j = valueOfCoordinate +1; j < -valueOfCoordinate; j++) {
-                            if (yvalue + i >= 0 && xvalue + j >= 0 && yvalue + i < 10 && xvalue + j < 10) {
-                                map[yvalue + i][xvalue + j] = Math.abs(map[yvalue + i][xvalue + j]);
-                            }
+                displaymap(map);
+            }
+            else if(valueOfCoordinate < 0) {
+                for (int i = valueOfCoordinate +1; i < -valueOfCoordinate; i++) {
+                    for (int j = valueOfCoordinate +1; j < -valueOfCoordinate; j++) {
+                        if (yvalue + i >= 0 && xvalue + j >= 0 && yvalue + i < 10 && xvalue + j < 10) {
+                            map[yvalue + i][xvalue + j] = Math.abs(map[yvalue + i][xvalue + j]);
+                            nrExplored++;
                         }
-
                     }
+
                 }
             }
 
